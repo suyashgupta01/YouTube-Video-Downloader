@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from pytube import YouTube
 from PIL import Image
 import requests
-import io, sys, time, os
+import io, sys, time, os, threading
 
 
 class Ui_MainWindow(object):
@@ -26,8 +26,9 @@ class Ui_MainWindow(object):
 
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
         self.progressBar.setGeometry(QtCore.QRect(10, 120, 441, 16))
-        self.progressBar.setProperty("value", 24)
+        self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
+
         self.b1 = QtWidgets.QRadioButton(self.centralwidget)
         self.b1.setGeometry(QtCore.QRect(10, 70, 57, 16))
         font = QtGui.QFont()
@@ -118,6 +119,16 @@ class Ui_MainWindow(object):
         """set thumbnail as per the video of given url"""
         self.label_3.setPixmap(QtGui.QPixmap(thumbnail_image))
 
+    def update_progress_bar(self, stream = None, chunk = None, file_handle = None, remaining = None): # This is all gathered automatically by pytube and we don’t have to put any values in here.
+        if remaining == None:
+            remaining = 0
+        progress = ((stream.filesize - remaining)/stream.filesize)*100
+        self.progressBar.setProperty("value", progress)
+
+    def download_video(self, stream, video_title):
+        stream.download('downloads')  # video downloaded to the downloads folder
+        os.remove(os.path.join('downloads', video_title + '-temp_thumbnail.jpeg'))  # remove thumbnail after video is downloaded.
+
     def click_on_download(self):
 
         # creating a downloads folder if it does not exist
@@ -125,7 +136,7 @@ class Ui_MainWindow(object):
             os.mkdir('downloads')
 
         url_text = self.url.toPlainText()  # convert stuff in url (textEdit) to text
-        yt = YouTube(url_text) # create YouTube object
+        yt = YouTube(url_text, on_complete_callback = self.update_progress_bar) # create YouTube object; 2nd arg? --> passed the reference of the function...
 
         video_title = yt.title
         # now removing all characters that are not permitted by windows
@@ -157,9 +168,12 @@ class Ui_MainWindow(object):
                 break
             else:
                 time.sleep(2)
-        # os.rmdir('downloads')
         stream = yt.streams.first()
-        stream.download('downloads') # downloads to current directory C:\\Users\\user\\Desktop
+
+        # now the process of download will be done on a seperate thread:
+        download_thread = threading.Thread(target = self.download_video, args = (stream, video_title))
+        download_thread.start()
+
 
 # self.textEdit.setPlainText(mytext)
 
