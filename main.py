@@ -4,7 +4,6 @@ from PIL import Image
 import requests
 import io, sys, time, os, threading
 
-
 class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
@@ -29,54 +28,65 @@ class Ui_MainWindow(object):
         self.progressBar.setProperty("value", 0)
         self.progressBar.setObjectName("progressBar")
 
-        self.b1 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b1.setGeometry(QtCore.QRect(10, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b1.setFont(font)
-        self.b1.setObjectName("b1")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(10, 50, 121, 16))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
+
+        # all radio buttons start ----------------------------------------
+
+        self.b1 = QtWidgets.QRadioButton(self.centralwidget)
+        self.b1.setGeometry(QtCore.QRect(10, 70, 57, 16))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.b1.setFont(font)
+        self.b1.setObjectName("b1")
+
         self.b2 = QtWidgets.QRadioButton(self.centralwidget)
         self.b2.setGeometry(QtCore.QRect(90, 70, 57, 16))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.b2.setFont(font)
         self.b2.setObjectName("b2")
-        self.b7 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b7.setGeometry(QtCore.QRect(90, 90, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b7.setFont(font)
-        self.b7.setObjectName("b7")
+
         self.b3 = QtWidgets.QRadioButton(self.centralwidget)
         self.b3.setGeometry(QtCore.QRect(160, 70, 57, 16))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.b3.setFont(font)
         self.b3.setObjectName("b3")
-        self.b6 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b6.setGeometry(QtCore.QRect(10, 90, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b6.setFont(font)
-        self.b6.setObjectName("b6")
+
         self.b4 = QtWidgets.QRadioButton(self.centralwidget)
         self.b4.setGeometry(QtCore.QRect(240, 70, 57, 16))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.b4.setFont(font)
         self.b4.setObjectName("b4")
+
         self.b5 = QtWidgets.QRadioButton(self.centralwidget)
         self.b5.setGeometry(QtCore.QRect(310, 70, 57, 16))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.b5.setFont(font)
         self.b5.setObjectName("b5")
+
+        self.b6 = QtWidgets.QRadioButton(self.centralwidget)
+        self.b6.setGeometry(QtCore.QRect(10, 90, 57, 16))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.b6.setFont(font)
+        self.b6.setObjectName("b6")
+
+        self.b7 = QtWidgets.QRadioButton(self.centralwidget)
+        self.b7.setGeometry(QtCore.QRect(90, 90, 57, 16))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.b7.setFont(font)
+        self.b7.setObjectName("b7")
+
+        # all radio buttons end ----------------------------------------
 
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(10, 150, 431, 171))
@@ -136,6 +146,10 @@ class Ui_MainWindow(object):
             os.mkdir('downloads')
 
         url_text = self.url.toPlainText()  # convert stuff in url (textEdit) to text
+        url_text.strip() # remove all leading and trailing spaces
+        if 'youtube.com' not in url_text:
+            self.url.setPlainText('Not a YouTube link!')  # tell user that ain't a vaild url
+            return
         yt = YouTube(url_text, on_complete_callback = self.update_progress_bar) # create YouTube object; 2nd arg? --> passed the reference of the function...
 
         video_title = yt.title
@@ -160,6 +174,7 @@ class Ui_MainWindow(object):
 
         self.url.setPlainText(video_title) # put title in place of url (user ko dikhane ke liye)
 
+        # get and save thumbnail image (might take a few secs)
         img = Image.open(io.BytesIO(requests.get(yt.thumbnail_url, stream=True).content)).convert("RGB")
         img.save(os.path.join('downloads', video_title + '-temp_thumbnail.jpeg'))
         while True: # jab tak thumbnail download na ho jaye, wait...!
@@ -168,11 +183,17 @@ class Ui_MainWindow(object):
                 break
             else:
                 time.sleep(2)
+
+        # Get all streams and modify values of radio buttons as per available streams...
+        # all_streams = yt.streams.all()
+        # for item in all_streams:
+        #     if
         stream = yt.streams.first()
 
-        # now the process of download will be done on a seperate thread:
-        download_thread = threading.Thread(target = self.download_video, args = (stream, video_title))
-        download_thread.start()
+
+        # now the process of download will be done on a separate thread:
+        download_thread = threading.Thread(target = self.download_video, args = (stream, video_title)) # created a thread
+        download_thread.start() # started that thread
 
 
 # self.textEdit.setPlainText(mytext)

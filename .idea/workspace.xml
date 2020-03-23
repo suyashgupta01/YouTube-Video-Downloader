@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db6f29ec-31d9-4d86-a0e4-d059a75e8017" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +17,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="123" column="25" selection-start-line="123" selection-start-column="25" selection-end-line="123" selection-end-column="25" />
+            <state relative-caret-position="-323">
+              <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
                 <element signature="e#4211#4972#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="15" column="64" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,12 +56,14 @@
       <find>thumbnail_</find>
       <find>button</find>
       <find>pushButton</find>
-      <find>url</find>
       <find>self.url</find>
       <find>pil</find>
       <find>image</find>
       <find>update_progress_bar</find>
       <find>remaining</find>
+      <find>radio</find>
+      <find>malese</find>
+      <find>url</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -65,8 +79,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="948" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-13" />
     <option name="y" value="-13" />
     <option name="width" value="984" />
     <option name="height" value="1052" />
@@ -215,21 +229,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1111" height="601" extended-state="6" />
+    <frame x="-7" y="-7" width="562" height="601" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="636" y="35" width="232" height="514" id="Project" order="0" side_tool="true" weight="0.19069767" />
+      <window_info content_ui="combo" x="636" y="35" width="232" height="514" id="Project" order="0" side_tool="true" weight="0.22053231" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24904943" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="6" y="6" width="1085" height="575" id="Run" order="2" sideWeight="0.49953488" type="FLOATING" visible="true" weight="0.24124514" />
+      <window_info anchor="bottom" x="6" y="6" width="1085" height="575" id="Run" order="2" sideWeight="0.49953488" type="FLOATING" weight="0.24124514" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.23266219" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5004651" side_tool="true" weight="0.1588367" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32885906" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49860466" weight="0.23266219" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50139534" side_tool="true" weight="0.23266219" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32662192" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -245,18 +260,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="114">
+          <caret line="15" column="64" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="64" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="123" column="25" selection-start-line="123" selection-start-column="25" selection-end-line="123" selection-end-column="25" />
+        <state relative-caret-position="-323">
+          <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
             <element signature="e#4211#4972#0" />
