@@ -1,5 +1,8 @@
+# These 2 links are mote than helpful!!
+# https://python-pytube.readthedocs.io/en/latest/api.html
+# https://python-pytube.readthedocs.io/en/latest/user/quickstart.html#downloading-a-video
 from PyQt5 import QtCore, QtGui, QtWidgets
-from pytube import YouTube
+from pytube import YouTube, exceptions
 from PIL import Image
 import requests
 import io, sys, time, os, threading
@@ -37,56 +40,61 @@ class Ui_MainWindow(object):
 
         # all radio buttons start ----------------------------------------
 
-        self.b1 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b1.setGeometry(QtCore.QRect(10, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b1.setFont(font)
-        self.b1.setObjectName("b1")
-
-        self.b2 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b2.setGeometry(QtCore.QRect(90, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b2.setFont(font)
-        self.b2.setObjectName("b2")
-
-        self.b3 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b3.setGeometry(QtCore.QRect(160, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b3.setFont(font)
-        self.b3.setObjectName("b3")
-
-        self.b4 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b4.setGeometry(QtCore.QRect(240, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b4.setFont(font)
-        self.b4.setObjectName("b4")
-
-        self.b5 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b5.setGeometry(QtCore.QRect(310, 70, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b5.setFont(font)
-        self.b5.setObjectName("b5")
-
-        self.b6 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b6.setGeometry(QtCore.QRect(10, 90, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b6.setFont(font)
-        self.b6.setObjectName("b6")
-
-        self.b7 = QtWidgets.QRadioButton(self.centralwidget)
-        self.b7.setGeometry(QtCore.QRect(90, 90, 57, 16))
-        font = QtGui.QFont()
-        font.setPointSize(8)
-        self.b7.setFont(font)
-        self.b7.setObjectName("b7")
+        # self.b1 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b1.setGeometry(QtCore.QRect(10, 70, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b1.setFont(font)
+        # self.b1.setObjectName("b1")
+        #
+        # self.b2 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b2.setGeometry(QtCore.QRect(90, 70, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b2.setFont(font)
+        # self.b2.setObjectName("b2")
+        #
+        # self.b3 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b3.setGeometry(QtCore.QRect(160, 70, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b3.setFont(font)
+        # self.b3.setObjectName("b3")
+        #
+        # self.b4 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b4.setGeometry(QtCore.QRect(240, 70, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b4.setFont(font)
+        # self.b4.setObjectName("b4")
+        #
+        # self.b5 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b5.setGeometry(QtCore.QRect(310, 70, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b5.setFont(font)
+        # self.b5.setObjectName("b5")
+        #
+        # self.b6 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b6.setGeometry(QtCore.QRect(10, 90, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b6.setFont(font)
+        # self.b6.setObjectName("b6")
+        #
+        # self.b7 = QtWidgets.QRadioButton(self.centralwidget)
+        # self.b7.setGeometry(QtCore.QRect(90, 90, 57, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(8)
+        # self.b7.setFont(font)
+        # self.b7.setObjectName("b7")
 
         # all radio buttons end ----------------------------------------
+
+        # drop down menu
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox.setGeometry(QtCore.QRect(10, 70, 57, 16))
+        self.comboBox.setObjectName("comboBox")
 
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         self.label_3.setGeometry(QtCore.QRect(10, 150, 431, 171))
@@ -115,14 +123,14 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "URL of Youtube Video: "))
-        self.b1.setText(_translate("MainWindow", "1080p"))
         self.label_2.setText(_translate("MainWindow", "Available Streams:"))
-        self.b2.setText(_translate("MainWindow", "720p"))
-        self.b7.setText(_translate("MainWindow", "more "))
-        self.b3.setText(_translate("MainWindow", "360p"))
-        self.b6.setText(_translate("MainWindow", "audio only"))
-        self.b4.setText(_translate("MainWindow", "240p"))
-        self.b5.setText(_translate("MainWindow", "144p"))
+        # self.b1.setText(_translate("MainWindow", "1080p"))
+        # self.b2.setText(_translate("MainWindow", "720p"))
+        # self.b7.setText(_translate("MainWindow", "more "))
+        # self.b3.setText(_translate("MainWindow", "360p"))
+        # self.b6.setText(_translate("MainWindow", "audio only"))
+        # self.b4.setText(_translate("MainWindow", "240p"))
+        # self.b5.setText(_translate("MainWindow", "144p"))
         self.pushButton.setText(_translate("MainWindow", "Download!"))
 
     def set_thumbnail(self, thumbnail_image):
@@ -149,8 +157,14 @@ class Ui_MainWindow(object):
         url_text.strip() # remove all leading and trailing spaces
         if 'youtube.com' not in url_text:
             self.url.setPlainText('Not a YouTube link!')  # tell user that ain't a vaild url
-            return
-        yt = YouTube(url_text, on_complete_callback = self.update_progress_bar) # create YouTube object; 2nd arg? --> passed the reference of the function...
+            return # just stop the execution of function man!
+
+        try:
+            yt = YouTube(url_text, on_complete_callback = self.update_progress_bar)
+            # create YouTube object; 2nd arg? --> passed the reference of the function...
+        except exceptions.RegexMatchError:
+            self.url.setPlainText('No video exits at given link!')
+            return # just stop the execution of function man!
 
         video_title = yt.title
         # now removing all characters that are not permitted by windows
