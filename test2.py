@@ -1,7 +1,11 @@
-from pytube import YouTube, exceptions
+from pytube import YouTube
 
-try:
-    yt = YouTube('youtube.com/aldsfjasdkf')
-    # create YouTube object; 2nd arg? --> passed the reference of the function...
-except exceptions.RegexMatchError:
-    print('No video exits at given link!')
+yt = YouTube('https://www.youtube.com/watch?v=LXb3EKWsInQ&t=7s')
+
+# stream = yt.streams.get_by_resolution('360p')
+
+ss = yt.streams.all()
+
+for i in ss:
+    if i.resolution == '480p':
+        print('pp')

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db6f29ec-31d9-4d86-a0e4-d059a75e8017" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/YoutubeDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/YoutubeDownloader.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,15 +14,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="166" column="64" selection-start-line="166" selection-start-column="64" selection-end-line="166" selection-end-column="64" />
+            <state relative-caret-position="43">
+              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#6021#6259#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Youtube Downloader/Lib/site-packages/pytube/query.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4212">
+              <caret line="238" selection-start-line="238" selection-end-line="239" />
             </state>
           </provider>
         </entry>
@@ -27,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
+            <state relative-caret-position="252">
               <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -39,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="108">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -56,25 +68,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>label</find>
-      <find>textedit</find>
-      <find>.png</find>
-      <find>thumbnail_</find>
-      <find>button</find>
-      <find>pushButton</find>
-      <find>self.url</find>
-      <find>pil</find>
-      <find>image</find>
-      <find>update_progress_bar</find>
-      <find>remaining</find>
-      <find>radio</find>
-      <find>malese</find>
-      <find>url</find>
-      <find>qtgui</find>
-      <find>combo</find>
-      <find>Youtube</find>
-      <find>youtube</find>
-      <find>error</find>
+      <find>msg.</find>
+      <find>show_pop</find>
+      <find>mainwindow</find>
+      <find>url.setp</find>
+      <find>thumbnail</find>
+      <find>label_3</find>
+      <find>url.set</find>
+      <find>here</find>
+      <find>----------</find>
+      <find>progress_bar</find>
+      <find>select a s</find>
+      <find>Select a stream to download</find>
+      <find>click_on_do</find>
+      <find>self.stream =</find>
+      <find>stream = sel</find>
+      <find>self.stream</find>
+      <find>download()</find>
+      <find>stream.downl</find>
+      <find>.all(</find>
+      <find>.down</find>
+      <find>gupta's</find>
+      <find>select stre</find>
+      <find>select a st</find>
+      <find>click_on</find>
+      <find>availa</find>
+      <find>available</find>
+      <find>_2</find>
+      <find>see stream</find>
+      <find>.download(</find>
+      <find>click_on_dow</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -91,7 +114,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-13" />
     <option name="y" value="-13" />
     <option name="width" value="984" />
@@ -263,10 +286,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="562" height="601" extended-state="0" />
+    <frame x="-7" y="-7" width="1111" height="601" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="636" y="35" width="232" height="514" id="Project" order="0" side_tool="true" weight="0.45057034" />
+      <window_info content_ui="combo" x="636" y="35" width="232" height="514" id="Project" order="0" side_tool="true" weight="0.08558139" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24904943" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -279,22 +302,25 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32885906" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49860466" weight="0.23266219" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50139534" side_tool="true" weight="0.23266219" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32662192" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.17225951" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/backend.py" />
+    <entry file="file://$PROJECT_DIR$/frontend.py" />
+    <entry file="file://$PROJECT_DIR$/../Youtube Downloader/Lib/site-packages/pytube/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4212">
+          <caret line="238" selection-start-line="238" selection-end-line="239" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
+        <state relative-caret-position="252">
           <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -304,17 +330,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="108">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="166" column="64" selection-start-line="166" selection-start-column="64" selection-end-line="166" selection-end-column="64" />
+        <state relative-caret-position="43">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#6021#6259#0" />
           </folding>
         </state>
       </provider>
