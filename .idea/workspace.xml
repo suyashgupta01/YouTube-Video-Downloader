@@ -2,62 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db6f29ec-31d9-4d86-a0e4-d059a75e8017" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/YoutubeDownloader.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/YoutubeDownloader.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-              <folding>
-                <element signature="e#6021#6259#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Youtube Downloader/Lib/site-packages/pytube/query.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4212">
-              <caret line="238" selection-start-line="238" selection-end-line="239" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,97 +19,21 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>msg.</find>
-      <find>show_pop</find>
-      <find>mainwindow</find>
-      <find>url.setp</find>
-      <find>thumbnail</find>
-      <find>label_3</find>
-      <find>url.set</find>
-      <find>here</find>
-      <find>----------</find>
-      <find>progress_bar</find>
-      <find>select a s</find>
-      <find>Select a stream to download</find>
-      <find>click_on_do</find>
-      <find>self.stream =</find>
-      <find>stream = sel</find>
-      <find>self.stream</find>
-      <find>download()</find>
-      <find>stream.downl</find>
-      <find>.all(</find>
-      <find>.down</find>
-      <find>gupta's</find>
-      <find>select stre</find>
-      <find>select a st</find>
-      <find>click_on</find>
-      <find>availa</find>
-      <find>available</find>
-      <find>_2</find>
-      <find>see stream</find>
-      <find>.download(</find>
-      <find>click_on_dow</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/backend.py" />
-        <option value="$PROJECT_DIR$/frontend.py" />
-        <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/test2.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="y" value="-13" />
-    <option name="width" value="984" />
-    <option name="height" value="1052" />
-  </component>
+  <component name="ProjectId" id="1ZcmKhLxGwnhh88PlRYBQbbJN1u" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="YoutubeDownloader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YoutubeDownloader" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Youtube Downloader" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.test">
     <configuration name="backend" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="YoutubeDownloader" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -264,9 +141,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.test2" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.test2" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.backend" />
         <item itemvalue="Python.frontend" />
       </list>
@@ -285,65 +162,26 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1111" height="601" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" x="636" y="35" width="232" height="514" id="Project" order="0" side_tool="true" weight="0.08558139" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.24904943" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" x="6" y="6" width="1085" height="575" id="Run" order="2" sideWeight="0.49953488" type="FLOATING" weight="0.24124514" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32885906" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49860466" weight="0.23266219" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50139534" side_tool="true" weight="0.23266219" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.17225951" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backend.py" />
-    <entry file="file://$PROJECT_DIR$/frontend.py" />
-    <entry file="file://$PROJECT_DIR$/../Youtube Downloader/Lib/site-packages/pytube/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4212">
-          <caret line="238" selection-start-line="238" selection-end-line="239" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#6021#6259#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state width="1085" height="519" key="GridCell.Tab.0.bottom" timestamp="1585155439824">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1085" height="519" key="GridCell.Tab.0.bottom/0.0.1097.587@0.0.1097.587" timestamp="1585155439824" />
+    <state width="1085" height="519" key="GridCell.Tab.0.center" timestamp="1585155439823">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1085" height="519" key="GridCell.Tab.0.center/0.0.1097.587@0.0.1097.587" timestamp="1585155439823" />
+    <state width="1085" height="519" key="GridCell.Tab.0.left" timestamp="1585155439823">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1085" height="519" key="GridCell.Tab.0.left/0.0.1097.587@0.0.1097.587" timestamp="1585155439823" />
+    <state width="1085" height="519" key="GridCell.Tab.0.right" timestamp="1585155439824">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1085" height="519" key="GridCell.Tab.0.right/0.0.1097.587@0.0.1097.587" timestamp="1585155439824" />
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1585146708771">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1097.587@0.0.1097.587" timestamp="1585146708771" />
   </component>
 </project>

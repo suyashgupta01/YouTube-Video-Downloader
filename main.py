@@ -8,7 +8,7 @@ from PIL import Image
 import requests
 import io, sys, time, os, threading
 
-class Ui_MainWindow(object):
+class Ui_MainWindow():
 
     # data members declared by me that are not related to the ui: stream, video_title
 
@@ -68,12 +68,12 @@ class Ui_MainWindow(object):
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)  # this is the select stream button....
         self.pushButton.setGeometry(QtCore.QRect(380, 10, 100, 25))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.click_on_select_stream) # click event connected to click_on_select_stream()
+        self.pushButton.clicked.connect(b.click_on_select_stream) # click event connected to click_on_select_stream()
 
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget) # this is the download button
         self.pushButton_2.setGeometry(QtCore.QRect(250, 60, 161, 41))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_2.clicked.connect(self.click_on_select_stream)  # click event connected to click_on_download()
+        self.pushButton_2.clicked.connect(b.click_on_download)  # click event connected to click_on_download()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -96,9 +96,21 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Download!"))
         self.video_title_label.setText(_translate("MainWindow", ""))
 
+    def show_popup(self, text_to_show):
+        msg = QMessageBox()
+        msg.setWindowTitle("Oye, watcha doin?")
+        msg.setText(text_to_show)
+        msg.setIcon(QMessageBox.Warning)
+
+        x = msg.exec_()  # this just shows the msg box -> don't ask TechWithTim how this works
+
     def set_thumbnail(self, thumbnail_image):
         """set thumbnail as per the video of given url"""
-        self.label_3.setPixmap(QtGui.QPixmap(thumbnail_image))
+        Ui_MainWindow.label_3.setPixmap(QtGui.QPixmap(thumbnail_image))
+
+class Backend():
+
+    def __init__(self):
 
     def update_progress_bar(self, chunk = None, file_handle = None, remaining = None): # This is all gathered automatically by pytube and we don’t have to put any values in here.
         if remaining is None:
@@ -119,20 +131,11 @@ class Ui_MainWindow(object):
         os.remove(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
         # now the process of download will be done on a separate thread:
         download_thread = threading.Thread(target = self.start_download_on_sep_thread) # created a thread
-        download_thread.start()# started that thread
+        download_thread.start() # started that thread
 
     def start_download_on_sep_thread(self):
         # video will be downloaded to the downloads folder
         self.stream.download('downloads')
-
-
-    def show_popup(self, text_to_show):
-        msg = QMessageBox()
-        msg.setWindowTitle("Hey, watcha doing?")
-        msg.setText(text_to_show)
-        msg.setIcon(QMessageBox.Warning)
-
-        x = msg.exec_() # this just shows the msg box -> don't ask TechWithTim how this works
 
     def click_on_select_stream(self):
 
@@ -141,13 +144,13 @@ class Ui_MainWindow(object):
             os.mkdir('downloads')
 
         # read url given by user
-        url_text = self.url.toPlainText()  # convert stuff in url (textEdit) to text
+        url_text = Ui_MainWindow.url.toPlainText()  # convert stuff in url (textEdit) to text
         url_text.strip() # remove all leading and trailing spaces
 
         # return if the url is not of youtube
         if 'youtube.com' not in url_text:
-            self.url.setPlainText("")  # clear the useless link
-            self.show_popup('Not a YouTube link!') # tell user that ain't a vaild url
+            Ui_MainWindow.url.setPlainText("")  # clear the useless link
+            Ui_MainWindow.show_popup('Not a YouTube link!') # tell user that ain't a vaild url
             return # just stop the execution of function man!
 
         # Create YouTube Object
@@ -155,8 +158,8 @@ class Ui_MainWindow(object):
             yt = YouTube(url_text, on_complete_callback = self.update_progress_bar)
             # 2nd arg? --> passed the reference of the function...
         except exceptions.RegexMatchError: # I observed that RegexMatchError is raised if url has no video on it...
-            self.url.setPlainText("")  # clear the useless link
-            self.show_popup('No video exists at given link!')
+            Ui_MainWindow.url.setPlainText("")  # clear the useless link
+            Ui_MainWindow.show_popup('No video exists at given link!')
             return # just stop the execution of function man!
 
         # Get video title
@@ -188,7 +191,7 @@ class Ui_MainWindow(object):
         img.save(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
         while True: # jab tak thumbnail download na ho jaye, wait...!
             if os.path.exists(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg')):
-                self.set_thumbnail(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
+                Ui_MainWindow.set_thumbnail(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
                 break
             else:
                 time.sleep(2)
@@ -225,24 +228,24 @@ class Ui_MainWindow(object):
                 p2160 = True
 
         if p144: # returns None or Stream object (which is not None => True...)
-            self.comboBox.addItem('144p')
+            Ui_MainWindow.comboBox.addItem('144p')
         if p240:
-            self.comboBox.addItem('240p')
+            Ui_MainWindow.comboBox.addItem('240p')
         if p360:
-            self.comboBox.addItem('360p')
+            Ui_MainWindow.comboBox.addItem('360p')
         if p480:
-            self.comboBox.addItem('480p')
+            Ui_MainWindow.comboBox.addItem('480p')
         if p720:
-            self.comboBox.addItem('780p')
+            Ui_MainWindow.comboBox.addItem('780p')
         if p1080:
-            self.comboBox.addItem('1080p')
+            Ui_MainWindow.comboBox.addItem('1080p')
         if p1440:
-            self.comboBox.addItem('1440p | 2K')
+            Ui_MainWindow.comboBox.addItem('1440p | 2K')
         if p2160:
-            self.comboBox.addItem('2160p | 4K')
+            Ui_MainWindow.comboBox.addItem('2160p | 4K')
 
         # See which item/ stream is selected in the combo box
-        selected_stream = self.comboBox.currentText()
+        selected_stream = Ui_MainWindow.comboBox.currentText()
         if selected_stream == 'Select a stream to download':
             self.stream = yt.streams.first() # if user doesn't select a stream -> highest quality video is downloaded
         elif selected_stream == '144p':
@@ -266,7 +269,13 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+
+    # frontend object ---> ui
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+
+    # backend object ---> b
+    b = Backend()
+
     sys.exit(app.exec_())
