@@ -215,6 +215,8 @@ class Backend():
         f.update_progress_bar(progress)
 
     def click_on_download(self):
+        # if the download button has been clicked once before, removing that progress and reseting it.
+        f.update_progress_bar(0)
         # see which stream the user has selected
         itag = f.return_selected_stream(self.listy)
         if itag is None:
