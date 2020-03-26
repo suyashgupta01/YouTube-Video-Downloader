@@ -55,7 +55,7 @@ class Ui_MainWindow():
 
         # drop down menu or combobox
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(10, 70, 57, 16))
+        self.comboBox.setGeometry(QtCore.QRect(10, 70, 300, 20))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("Select a stream to download")
         # set this as default selected item
@@ -74,7 +74,7 @@ class Ui_MainWindow():
         self.pushButton.clicked.connect(self.click_on_see_streams) # click event connected to click_on_select_stream()
 
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget) # this is the download button
-        self.pushButton_2.setGeometry(QtCore.QRect(250, 60, 161, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(350, 60, 140, 41))
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.clicked.connect(self.click_on_download)  # click event connected to click_on_download()
 
@@ -124,63 +124,29 @@ class Ui_MainWindow():
         else:
             return False
 
-    def add_to_combobox(self, p144, p240, p360, p480, p720, p1080, p1440, p2160):
-        if p144:
-            if not self.already_in_combobox('144p'): # why this check? --> if user click again on see streams button... then duplicate stream na aaye isliye...
-                self.comboBox.addItem('144p')
-        if p240:
-            if not self.already_in_combobox('240p'):
-                self.comboBox.addItem('240p')
-        if p360:
-            if not self.already_in_combobox('360p'):
-                self.comboBox.addItem('360p')
-        if p480:
-            if not self.already_in_combobox('480p'):
-                self.comboBox.addItem('480p')
-        if p720:
-            if not self.already_in_combobox('720p'):
-                self.comboBox.addItem('780p')
-        if p1080:
-            if not self.already_in_combobox('1080p'):
-                self.comboBox.addItem('1080p')
-        if p1440:
-            if not self.already_in_combobox('1440p | 2K'):
-                self.comboBox.addItem('1440p | 2K')
-        if p2160:
-            if not self.already_in_combobox('2160p | 4K'):
-                self.comboBox.addItem('2160p | 4K')
+    def add_to_combobox(self, listy):
+        for tup in listy:
+            if not self.already_in_combobox(tup[1] + ' @ ' + str(tup[2]) + 'fps'): # why this check? --> if user click again on see streams button... then duplicate stream na aaye isliye...
+                self.comboBox.addItem(tup[1] + ' @ ' + str(tup[2]) + 'fps')
 
-    def return_selected_stream(self):
+    def return_selected_stream(self, listy):
         # See which item/ stream is selected in the combo box
-        selected_stream = self.comboBox.currentText()
-        print('selected stream read from bombobox')
-        if selected_stream == 'Select a stream to download':
-            print('none')
+        # returns itag of selected stream or returns None
+        selection = self.comboBox.currentText() # of the format: 'xp @ yfps' or 'Select a stream to download'
+        print('inp -->')
+        print(selection)
+        if selection == 'Select a stream to download':
+            print('output --> None')
             return None
-        elif selected_stream == '144p':
-            print(144)
-            return '144p'
-        elif selected_stream == '240p':
-            print(240)
-            return '240p'
-        elif selected_stream == '360p':
-            print(360)
-            return '360p'
-        elif selected_stream == '480p':
-            print(480)
-            return '480p'
-        elif selected_stream == '720p':
-            print(720)
-            return '720p'
-        elif selected_stream == '1080p':
-            print(1080)
-            return '1080p'
-        elif selected_stream == '1440p | 2K':
-            print(1440)
-            return '1440p'
-        elif selected_stream == '2160p | 4K':
-            print(2160)
-            return '2160p'
+        res, useless, fps = selection.split(' ')
+        del useless
+        fps = int(fps[0:2]) # '30fps' -->  '30'
+        print('just b4 4 loop: res = ', res, ' and fps = ', fps)
+        for tup in listy:
+            if tup[1] == res and tup[2] == fps:
+                print('output -->', tup)
+                return tup[0]
+
 
     def set_thumbnail(self, img_path):
         self.label_3.setPixmap(QtGui.QPixmap(img_path))
@@ -197,7 +163,7 @@ class Backend():
     def __init__(self, url):
         self.yt = YouTube(url, on_complete_callback = self.return_download_progress) # 2nd arg? --> passed the reference of the function...
         self.video_title = self.yt.title
-        self.stream = None # will be given value when user selects stream later ---> click_on_download()
+        self.listy = []  # will store the list of available streams to be shown to user; each element = tuple --> (itag, resolution, fps)
 
     def click_on_see_streams(self):
 
@@ -210,46 +176,12 @@ class Backend():
         f.set_title(self.video_title)
         # get and save and show thumbnail image (might take a few secs)
         self.get_and_save_and_set_thumbnail()
-        # see the available streams and add them in combo box
-
-        p144 = False
-        p240 = False
-        p360 = False
-        p480 = False
-        p720 = False
-        p1080 = False
-        p1440 = False
-        p2160 = False
-
-        all_streams = self.yt.streams.all()
-
-        for i in all_streams:
-            if p144 is not True: # why this condition? if 1 bar True set ho gya to vapas check krne ki jarurat na pade
-                if i.resolution == '144p':
-                    p144 = True
-            if p240 is not True:
-                if i.resolution == '240p':
-                    p240 = True
-            if p360 is not True:
-                if i.resolution == '360p':
-                    p360 = True
-            if p480 is not True:
-                if i.resolution == '480p':
-                    p480 = True
-            if p720 is not True:
-                if i.resolution == '720p':
-                    p720 = True
-            if p1080 is not True:
-                if i.resolution == '1080p':
-                    p1080 = True
-            if p1440 is not True:
-                if i.resolution == '1440p':
-                    p1440 = True
-            if p2160 is not True:
-                if i.resolution == '2160p':
-                    p2160 = True
-
-        f.add_to_combobox(p144, p240, p360, p480, p720, p1080, p1440, p2160)
+        # make a list of all available streams
+        for i in self.yt.streams.all():
+            if i.type == 'video' and i.resolution is not None:
+                self.listy.append((i.itag, i.resolution, i.fps))
+        # Add all streams to combo box
+        f.add_to_combobox(self.listy)
 
     def clean_title(self):
         # now removing all characters that are not permitted by windows
@@ -289,19 +221,23 @@ class Backend():
 
     def click_on_download(self):
         # see which stream the user has selected
-        selected_stream = f.return_selected_stream()
-        if selected_stream is None:
+        itag = f.return_selected_stream(self.listy)
+        if itag is None:
             # if user doesn't select a stream -> highest quality stream is selected
-            self.stream = self.yt.streams.first()
+            stream = self.yt.streams.get_highest_resolution()
+            if stream is None:
+                # if for some reason highest quality stream cannot be selected, select the first stream
+                stream = self.yt.streams.first()
         else:
-            self.stream = self.yt.streams.get_by_resolution(selected_stream)
-        # now the process of download will be done on a separate thread:
-        download_thread = threading.Thread(target = self.start_download_on_sep_thread) # created a thread
-        download_thread.start() # started that thread
+            stream = self.yt.streams.get_by_itag(itag)
+        # created a thread; now the process of download will be done on a separate thread...
+        download_thread = threading.Thread(target = self.start_download_on_sep_thread, args = (stream,))
+        # started that thread
+        download_thread.start()
 
-    def start_download_on_sep_thread(self):
+    def start_download_on_sep_thread(self, stream):
         # video will be downloaded to the downloads folder
-        self.stream.download('downloads')
+        stream.download('downloads')
 
 
 # ------- this is global stuff ---------

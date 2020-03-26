@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db6f29ec-31d9-4d86-a0e4-d059a75e8017" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/user.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +29,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Youtube Downloader" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -163,25 +163,52 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1085" height="519" key="GridCell.Tab.0.bottom" timestamp="1585155439824">
+    <state width="1085" height="519" key="GridCell.Tab.0.bottom" timestamp="1585231459925">
       <screen x="0" y="0" width="1097" height="587" />
     </state>
-    <state width="1085" height="519" key="GridCell.Tab.0.bottom/0.0.1097.587@0.0.1097.587" timestamp="1585155439824" />
-    <state width="1085" height="519" key="GridCell.Tab.0.center" timestamp="1585155439823">
+    <state width="1085" height="519" key="GridCell.Tab.0.bottom/0.0.1097.587@0.0.1097.587" timestamp="1585231459925" />
+    <state width="1085" height="519" key="GridCell.Tab.0.center" timestamp="1585231459925">
       <screen x="0" y="0" width="1097" height="587" />
     </state>
-    <state width="1085" height="519" key="GridCell.Tab.0.center/0.0.1097.587@0.0.1097.587" timestamp="1585155439823" />
-    <state width="1085" height="519" key="GridCell.Tab.0.left" timestamp="1585155439823">
+    <state width="1085" height="519" key="GridCell.Tab.0.center/0.0.1097.587@0.0.1097.587" timestamp="1585231459925" />
+    <state width="1085" height="519" key="GridCell.Tab.0.left" timestamp="1585231459925">
       <screen x="0" y="0" width="1097" height="587" />
     </state>
-    <state width="1085" height="519" key="GridCell.Tab.0.left/0.0.1097.587@0.0.1097.587" timestamp="1585155439823" />
-    <state width="1085" height="519" key="GridCell.Tab.0.right" timestamp="1585155439824">
+    <state width="1085" height="519" key="GridCell.Tab.0.left/0.0.1097.587@0.0.1097.587" timestamp="1585231459925" />
+    <state width="1085" height="519" key="GridCell.Tab.0.right" timestamp="1585231459925">
       <screen x="0" y="0" width="1097" height="587" />
     </state>
-    <state width="1085" height="519" key="GridCell.Tab.0.right/0.0.1097.587@0.0.1097.587" timestamp="1585155439824" />
+    <state width="1085" height="519" key="GridCell.Tab.0.right/0.0.1097.587@0.0.1097.587" timestamp="1585231459925" />
+    <state width="1076" height="156" key="GridCell.Tab.1.bottom" timestamp="1585223512001">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1076" height="156" key="GridCell.Tab.1.bottom/0.0.1097.587@0.0.1097.587" timestamp="1585223512001" />
+    <state width="1076" height="156" key="GridCell.Tab.1.center" timestamp="1585223512001">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1076" height="156" key="GridCell.Tab.1.center/0.0.1097.587@0.0.1097.587" timestamp="1585223512001" />
+    <state width="1076" height="156" key="GridCell.Tab.1.left" timestamp="1585223512001">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1076" height="156" key="GridCell.Tab.1.left/0.0.1097.587@0.0.1097.587" timestamp="1585223512001" />
+    <state width="1076" height="156" key="GridCell.Tab.1.right" timestamp="1585223512001">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state width="1076" height="156" key="GridCell.Tab.1.right/0.0.1097.587@0.0.1097.587" timestamp="1585223512001" />
     <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1585146708771">
       <screen x="0" y="0" width="1097" height="587" />
     </state>
     <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1097.587@0.0.1097.587" timestamp="1585146708771" />
+    <state x="211" y="-1" key="search.everywhere.popup" timestamp="1585220436821">
+      <screen x="0" y="0" width="1097" height="587" />
+    </state>
+    <state x="211" y="-1" key="search.everywhere.popup/0.0.1097.587@0.0.1097.587" timestamp="1585220436821" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="__exception__.__len__()" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
