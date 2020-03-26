@@ -133,18 +133,13 @@ class Ui_MainWindow():
         # See which item/ stream is selected in the combo box
         # returns itag of selected stream or returns None
         selection = self.comboBox.currentText() # of the format: 'xp @ yfps' or 'Select a stream to download'
-        print('inp -->')
-        print(selection)
         if selection == 'Select a stream to download':
-            print('output --> None')
             return None
         res, useless, fps = selection.split(' ')
         del useless
         fps = int(fps[0:2]) # '30fps' -->  '30'
-        print('just b4 4 loop: res = ', res, ' and fps = ', fps)
         for tup in listy:
             if tup[1] == res and tup[2] == fps:
-                print('output -->', tup)
                 return tup[0]
 
 
@@ -161,7 +156,7 @@ class Ui_MainWindow():
 class Backend():
 
     def __init__(self, url):
-        self.yt = YouTube(url, on_complete_callback = self.return_download_progress) # 2nd arg? --> passed the reference of the function...
+        self.yt = YouTube(url, on_progress_callback = self.return_download_progress) # 2nd arg? --> passed the reference of the function...
         self.video_title = self.yt.title
         self.listy = []  # will store the list of available streams to be shown to user; each element = tuple --> (itag, resolution, fps)
 
