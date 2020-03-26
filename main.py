@@ -1,12 +1,15 @@
-# These 2 links are mote than helpful!!
+# These are more than helpful!!
 # https://python-pytube.readthedocs.io/en/latest/api.html
 # https://python-pytube.readthedocs.io/en/latest/user/quickstart.html#downloading-a-video
+# and tech with tim's pyqt5 playlist on yt
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from pytube import YouTube, exceptions
 from PIL import Image
 import requests
 import io, sys, time, os, threading
+
 
 class Ui_MainWindow():
 
@@ -52,7 +55,7 @@ class Ui_MainWindow():
 
         # drop down menu or combobox
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(10, 70, 57, 16))
+        self.comboBox.setGeometry(QtCore.QRect(10, 70, 300, 20))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("Select a stream to download")
         # set this as default selected item
@@ -68,12 +71,12 @@ class Ui_MainWindow():
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)  # this is the select stream button....
         self.pushButton.setGeometry(QtCore.QRect(380, 10, 100, 25))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(b.click_on_select_stream) # click event connected to click_on_select_stream()
+        self.pushButton.clicked.connect(self.click_on_see_streams) # click event connected to click_on_select_stream()
 
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget) # this is the download button
-        self.pushButton_2.setGeometry(QtCore.QRect(250, 60, 161, 41))
+        self.pushButton_2.setGeometry(QtCore.QRect(350, 60, 140, 41))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_2.clicked.connect(b.click_on_download)  # click event connected to click_on_download()
+        self.pushButton_2.clicked.connect(self.click_on_download)  # click event connected to click_on_download()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -104,68 +107,80 @@ class Ui_MainWindow():
 
         x = msg.exec_()  # this just shows the msg box -> don't ask TechWithTim how this works
 
-    def set_thumbnail(self, thumbnail_image):
-        """set thumbnail as per the video of given url"""
-        Ui_MainWindow.label_3.setPixmap(QtGui.QPixmap(thumbnail_image))
+    def click_on_see_streams(self):
+        global b
+        b = create_backend_object()
+        if b is not None:
+            b.click_on_see_streams() # call a function of the same name from the backend; b --> backend class ka object
 
-class Backend():
+    def click_on_download(self):
+        b.click_on_download() # call a function of the same name from the backend
 
-    def __init__(self):
+    def already_in_combobox(self,text):
+        # returns -1 if not in combobox; else returns index from 0 to n
+        index = self.comboBox.findText(text, QtCore.Qt.MatchFixedString)
+        if index >= 0:
+            return True
+        else:
+            return False
 
-    def update_progress_bar(self, chunk = None, file_handle = None, remaining = None): # This is all gathered automatically by pytube and we don’t have to put any values in here.
-        if remaining is None:
-             remaining = 0
-        progress = ((self.stream.filesize - remaining)/self.stream.filesize)*100
+    def add_to_combobox(self, listy):
+        for tup in listy:
+            if not self.already_in_combobox(tup[1] + ' @ ' + str(tup[2]) + 'fps'): # why this check? --> if user click again on see streams button... then duplicate stream na aaye isliye...
+                self.comboBox.addItem(tup[1] + ' @ ' + str(tup[2]) + 'fps')
+
+    def return_selected_stream(self, listy):
+        # See which item/ stream is selected in the combo box
+        # returns itag of selected stream or returns None
+        selection = self.comboBox.currentText() # of the format: 'xp @ yfps' or 'Select a stream to download'
+        if selection == 'Select a stream to download':
+            return None
+        res, useless, fps = selection.split(' ')
+        del useless
+        fps = int(fps[0:2]) # '30fps' -->  '30'
+        for tup in listy:
+            if tup[1] == res and tup[2] == fps:
+                return tup[0]
+
+
+    def set_thumbnail(self, img_path):
+        self.label_3.setPixmap(QtGui.QPixmap(img_path))
+
+    def set_title(self, video_title):
+        self.video_title_label.setText(video_title)
+
+    def update_progress_bar(self, progress):
         self.progressBar.setProperty("value", progress)
 
 
-    # def update_progress_bar(self, stream = None, chunk = None, file_handle = None, remaining = None): # This is all gathered automatically by pytube and we don’t have to put any values in here.
-    #     if remaining is None:
-    #         remaining = 0
-    #     progress = ((stream.filesize - remaining)/stream.filesize)*100
-    #     self.progressBar.setProperty("value", progress)
+class Backend():
 
+    def __init__(self, url):
+        self.yt = YouTube(url, on_progress_callback = self.return_download_progress) # 2nd arg? --> passed the reference of the function...
+        self.video_title = self.yt.title
+        self.listy = []  # will store the list of available streams to be shown to user; each element = tuple --> (itag, resolution, fps)
 
-    def click_on_download(self):
-        # remove thumbnail
-        os.remove(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
-        # now the process of download will be done on a separate thread:
-        download_thread = threading.Thread(target = self.start_download_on_sep_thread) # created a thread
-        download_thread.start() # started that thread
-
-    def start_download_on_sep_thread(self):
-        # video will be downloaded to the downloads folder
-        self.stream.download('downloads')
-
-    def click_on_select_stream(self):
+    def click_on_see_streams(self):
 
         # creating a downloads folder if it does not exist
         if not os.path.exists('downloads'):
             os.mkdir('downloads')
+        # Clean video title
+        self.clean_title()
+        # Show video title to user
+        f.set_title(self.video_title)
+        # get and save and show thumbnail image (might take a few secs)
+        self.get_and_save_and_set_thumbnail()
+        # make a list of all available streams
+        for i in self.yt.streams.all():
+            if i.type == 'video' and i.resolution is not None:
+                self.listy.append((i.itag, i.resolution, i.fps))
+        # Add all streams to combo box
+        f.add_to_combobox(self.listy)
 
-        # read url given by user
-        url_text = Ui_MainWindow.url.toPlainText()  # convert stuff in url (textEdit) to text
-        url_text.strip() # remove all leading and trailing spaces
-
-        # return if the url is not of youtube
-        if 'youtube.com' not in url_text:
-            Ui_MainWindow.url.setPlainText("")  # clear the useless link
-            Ui_MainWindow.show_popup('Not a YouTube link!') # tell user that ain't a vaild url
-            return # just stop the execution of function man!
-
-        # Create YouTube Object
-        try:
-            yt = YouTube(url_text, on_complete_callback = self.update_progress_bar)
-            # 2nd arg? --> passed the reference of the function...
-        except exceptions.RegexMatchError: # I observed that RegexMatchError is raised if url has no video on it...
-            Ui_MainWindow.url.setPlainText("")  # clear the useless link
-            Ui_MainWindow.show_popup('No video exists at given link!')
-            return # just stop the execution of function man!
-
-        # Get video title
-        self.video_title = yt.title
+    def clean_title(self):
         # now removing all characters that are not permitted by windows
-        # replace(a,b) replaces all occourances of a with b in string
+        # replace(a,b) replaces all occurrences of a with b in string
         if '\\' in self.video_title:
             self.video_title = self.video_title.replace('\\', '')
         if ':' in self.video_title:
@@ -183,99 +198,90 @@ class Backend():
         if '?' in self.video_title:
             self.video_title = self.video_title.replace('?', '')
 
-        # Show video title to user
-        self.video_title_label.setText(self.video_title)
-
-        # get and save thumbnail image (might take a few secs)
-        img = Image.open(io.BytesIO(requests.get(yt.thumbnail_url, stream=True).content)).convert("RGB")
+    def get_and_save_and_set_thumbnail(self):
+        img = Image.open(io.BytesIO(requests.get(self.yt.thumbnail_url, stream=True).content)).convert("RGB")
         img.save(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
-        while True: # jab tak thumbnail download na ho jaye, wait...!
-            if os.path.exists(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg')):
-                Ui_MainWindow.set_thumbnail(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
-                break
-            else:
-                time.sleep(2)
+        if os.path.exists(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg')):
+            f.set_thumbnail(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
+        else: # if user deletes thumbnail
+            self.get_and_save_and_set_thumbnail()
+        # now remove thumbnail
+        os.remove(os.path.join('downloads', self.video_title + '-temp_thumbnail.jpeg'))
 
-        # see the available streams and add items in combo box
+    def return_download_progress(self, stream = None, chunk=None, file_handle=None, remaining=None): # This is all gathered automatically by pytube and we don’t have to put any values in here.
+        if remaining is None:
+            remaining = 0
+        progress = ((stream.filesize - remaining)/stream.filesize)*100
+        f.update_progress_bar(progress)
 
-        p144 = False
-        p240 = False
-        p360 = False
-        p480 = False
-        p720 = False
-        p1080 = False
-        p1440 = False
-        p2160 = False
+    def click_on_download(self):
+        # see which stream the user has selected
+        itag = f.return_selected_stream(self.listy)
+        if itag is None:
+            # if user doesn't select a stream -> highest quality stream is selected
+            stream = self.yt.streams.get_highest_resolution()
+            if stream is None:
+                # if for some reason highest quality stream cannot be selected, select the first stream
+                stream = self.yt.streams.first()
+        else:
+            stream = self.yt.streams.get_by_itag(itag)
+        # created a thread; now the process of download will be done on a separate thread...
+        download_thread = threading.Thread(target = self.start_download_on_sep_thread, args = (stream,))
+        # started that thread
+        download_thread.start()
 
-        all_streams = yt.streams.all()
+    def start_download_on_sep_thread(self, stream):
+        # video will be downloaded to the downloads folder
+        stream.download('downloads')
 
-        for i in all_streams:
-            if i.resolution == '144p':
-                p144 = True
-            if i.resolution == '240p':
-                p240 = True
-            if i.resolution == '360p':
-                p360 = True
-            if i.resolution == '480p':
-                p480 = True
-            if i.resolution == '720p':
-                p720 = True
-            if i.resolution == '1080p':
-                p1080 = True
-            if i.resolution == '1440p':
-                p1440 = True
-            if i.resolution == '2160p':
-                p2160 = True
 
-        if p144: # returns None or Stream object (which is not None => True...)
-            Ui_MainWindow.comboBox.addItem('144p')
-        if p240:
-            Ui_MainWindow.comboBox.addItem('240p')
-        if p360:
-            Ui_MainWindow.comboBox.addItem('360p')
-        if p480:
-            Ui_MainWindow.comboBox.addItem('480p')
-        if p720:
-            Ui_MainWindow.comboBox.addItem('780p')
-        if p1080:
-            Ui_MainWindow.comboBox.addItem('1080p')
-        if p1440:
-            Ui_MainWindow.comboBox.addItem('1440p | 2K')
-        if p2160:
-            Ui_MainWindow.comboBox.addItem('2160p | 4K')
+# ------- this is global stuff ---------
 
-        # See which item/ stream is selected in the combo box
-        selected_stream = Ui_MainWindow.comboBox.currentText()
-        if selected_stream == 'Select a stream to download':
-            self.stream = yt.streams.first() # if user doesn't select a stream -> highest quality video is downloaded
-        elif selected_stream == '144p':
-            self.stream = yt.streams.get_by_resolution('144p')
-        elif selected_stream == '240p':
-            self.stream = yt.streams.get_by_resolution('240p')
-        elif selected_stream == '360p':
-            self.stream = yt.streams.get_by_resolution('360p')
-        elif selected_stream == '480p':
-            self.stream = yt.streams.get_by_resolution('480p')
-        elif selected_stream == '720p':
-            self.stream = yt.streams.get_by_resolution('720p')
-        elif selected_stream == '1080p':
-            self.stream = yt.streams.get_by_resolution('1080p')
-        elif selected_stream == '1440p | 2K':
-            self.stream = yt.streams.get_by_resolution('1440')
-        elif selected_stream == '2160p | 4K':
-            self.stream = yt.streams.get_by_resolution('2160p')
+b = None # for backend object to remain global (as it is being declared in the f.click_on_see_streams()
+
+
+def create_backend_object():
+    """If user gives a non youtube urls or a url with youtube.com in it but that doesn't actually have a video on it...
+    Here I read and  try to create a YouTube object, if no exception is raised => url is correct
+    => a backend object can be created (Inside which another yt obj will be created, but that's none of this fun's
+    business."""
+    global b
+
+    # read url given by user
+    url_text = f.url.toPlainText()  # convert stuff in url (textEdit) to text
+    url_text.strip()  # remove all leading and trailing spaces
+
+    # return if the url is not of youtube
+    if 'youtube.com' not in url_text:
+        f.url.setPlainText("")  # clear the useless link
+        f.show_popup('Not a YouTube link!')  # tell user that ain't a vaild url
+        return None
+
+    # return if no video exists at given url
+    try:
+        yt = YouTube(url_text)
+    except exceptions.RegexMatchError:  # I observed that RegexMatchError is raised if url has no video on it...
+        f.url.setPlainText("")  # clear the useless link
+        f.show_popup('No video exists at given link!')
+        del yt # to free up memory... (if exception is raised, delete it here)
+        return None
+
+    del yt  # to free up memory... (if no exception is raised, delete it here)
+
+    b = Backend(url_text)
+    return b
 
 
 if __name__ == "__main__":
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
 
-    # frontend object ---> ui
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    # frontend object ---> f
+    f = Ui_MainWindow()
+    f.setupUi(MainWindow)
     MainWindow.show()
 
-    # backend object ---> b
-    b = Backend()
+    # where's backend object ---> b ? It's created in f.click_on_see_streams()
 
     sys.exit(app.exec_())
